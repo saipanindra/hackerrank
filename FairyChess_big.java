@@ -12,7 +12,7 @@ class PosXY
 	}
 }
 
-public class Solution {
+public class FairyChessc {
 
 	public static void main(String[] args) {
 

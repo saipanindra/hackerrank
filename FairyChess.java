@@ -80,7 +80,7 @@ public class FairyChess {
 			
 		}
 	
-	public static void printMatrix(int[][] m, int i )
+	public static void printMatrix(long[][] m, int i )
 	{
 		System.out.println("m"+i);
 		for(int k = 0 ; k < m.length ;k++)
@@ -100,11 +100,34 @@ public class FairyChess {
 
 		ArrayList<PosXY> posList = new ArrayList<PosXY>();
 		long[][] prevMatCopy = new long[prevMat.length][prevMat.length];
+		
 		for(int i = 0 ; i < prevMat.length ; i++)
 		{
-		   prevMatCopy[i] = Arrays.copyOf(prevMat[i],prevMat[i].length);
+		
+			for(int j = 0 ; j < prevMat.length ; j++)
+			prevMatCopy[i][j] = prevMat[i][j];
 		   
 		}
+		
+		
+		for(int i = 0 ; i < prevMatCopy.length ; i++)
+		{
+			for(int j = 0 ; j < prevMatCopy[i].length ; j++)
+			{
+				
+				for(int k = i-S ; k <= i + S ; k++)
+					
+					for(int l = j-S ; l <= j+S ; l++)
+						
+						if( (k >= 0 && k < prevMat.length && l>=0 && l < prevMat.length ) &&!(k == i && l == j) && Math.abs(k-i) + Math.abs(l-j) <= S && prevMat[k][l] > 0 && prevMat[i][j] != -1 )
+						{
+							prevMatCopy[i][j] = (prevMatCopy[i][j] + prevMat[k][l]) % 1000000007  ;
+							
+						}
+			}
+		}
+		/*
+		
 		for(int i = 0 ; i < prevMat.length ; i++)
 		{
 			for(int j = 0 ; j < prevMat[i].length ; j++)
@@ -147,7 +170,7 @@ public class FairyChess {
 				}
 			}
 		}
-		
+		*/
 		return prevMatCopy;
 		
 		
